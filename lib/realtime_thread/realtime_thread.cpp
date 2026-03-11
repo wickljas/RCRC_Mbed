@@ -43,6 +43,9 @@ void realtime_thread::loop(void)
         m_IO_handler->write_aout(u); // write to analog output
 
         myDataLogger.write_to_log(time, u, y1, y2, 0.0f, 0.0f, 0.0f);
+
+        m_IO_handler->write_aout(exc);
+        exc = myGPA.update(exc, y2); // update the GPA and get the excitation signal for the next iteration
     }
 }
 
